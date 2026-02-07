@@ -18,7 +18,7 @@ A [Claude Code skill](https://skills.sh/) that orchestrates 28 skills across 8 p
 | 1 | Idea | brainstorming | Design document |
 | 2 | Business | business-model-canvas, startup-business-models | Canvas + pricing |
 | 3 | Product | product-manager-toolkit, product-marketing-context | PRD + marketing context |
-| 4 | Architecture | backend-architect, ui-ux-pro-max | Architecture + API contracts |
+| 4 | Architecture | ux-flow-designer, backend-architect, ui-ux-pro-max | Architecture + API contracts |
 | 5 | Design | ui-ux-pro-max | Design system |
 | 6 | Implementation | writing-plans, git-worktrees, TDD, code-review, verification + 6 more | Working, tested code |
 | 7 | Deployment | docker-expert | Dockerfile + docker-compose |

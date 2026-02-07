@@ -9,6 +9,7 @@ Load this file when a required skill is missing and needs installation.
 | startup-business-models | 2 | `npx skills add vasilyu1983/ai-agents-public@startup-business-models -g -y` |
 | product-manager-toolkit | 3 | `npx skills find product-manager-toolkit` |
 | product-marketing-context | 3 | `npx skills find product-marketing-context` |
+| ux-flow-designer | 4 | `npx skills add ThomasPraun/ux-flow-designer@ux-flow-designer -g -y` |
 | backend-architect | 4 | `npx skills add sickn33/antigravity-awesome-skills@backend-architect -g -y` |
 | ui-ux-pro-max | 4,5 | `npx skills find ui-ux-pro-max` |
 | writing-plans | 6 | `npx skills find writing-plans` |

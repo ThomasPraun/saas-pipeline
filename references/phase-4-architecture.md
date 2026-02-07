@@ -16,9 +16,10 @@ Define technical architecture, API contracts, and data models. Ensure stack-spec
 
 | Order | Skill | Purpose |
 |-------|-------|---------|
-| 1 | find-skills | Discover stack-specific skills |
-| 2 | backend-architect | API design, data models, infrastructure |
-| 3 | ui-ux-pro-max | UI architecture, component hierarchy |
+| 1 | ux-flow-designer | User flow diagrams, screen maps, HTML wireframes |
+| 2 | find-skills | Discover stack-specific skills |
+| 3 | backend-architect | API design, data models, infrastructure |
+| 4 | ui-ux-pro-max | UI architecture, component hierarchy |
 
 ## Prerequisites
 
@@ -26,7 +27,13 @@ Stack must be defined before starting. Read `## Tech Stack` from project's `CLAU
 
 ## Workflow
 
-### Step 1: Stack-Specific Skill Discovery
+### Step 1: UX Flows
+
+Delegate to `ux-flow-designer` with PRD from phase 3. Produces user flow diagrams, screen maps, and HTML wireframes.
+
+Save to `docs/architecture/ux-flows/`.
+
+### Step 2: Stack-Specific Skill Discovery
 
 ```
 FOR each technology in stack:
@@ -34,19 +41,19 @@ FOR each technology in stack:
   PRESENT results, OFFER install
 ```
 
-### Step 2: Backend Architecture
+### Step 3: Backend Architecture
 
-Delegate to `backend-architect` with context from phases 1-3 and backend stack.
+Delegate to `backend-architect` with context from phases 1-3, UX flows from Step 1, and backend stack.
 
 Save to `docs/architecture/backend-architecture.md`.
 
-### Step 3: UI Architecture
+### Step 4: UI Architecture
 
-Delegate to `ui-ux-pro-max` with PRD, API contracts from Step 2, and frontend stack.
+Delegate to `ui-ux-pro-max` with PRD, UX flows from Step 1, API contracts from Step 3, and frontend stack.
 
 Save to `docs/architecture/ui-architecture.md`.
 
-### Step 4: API Contract Alignment
+### Step 5: API Contract Alignment
 
 Verify backend contracts align with UI data needs. Resolve mismatches.
 
@@ -63,6 +70,7 @@ Sync: API contract alignment after both complete
 
 ## Exit Criteria
 
+- [ ] User flow diagrams and screen maps created
 - [ ] Backend architecture documented
 - [ ] UI architecture documented
 - [ ] API contracts defined and aligned

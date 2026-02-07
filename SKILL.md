@@ -110,7 +110,7 @@ When entering a phase, read its reference file for detailed workflow.
 | 1 | Idea | brainstorming | Design doc | Committed to repo | `references/phase-1-idea.md` |
 | 2 | Business | business-model-canvas → startup-business-models | Canvas + pricing | Score >= 60, pricing defined | `references/phase-2-business.md` |
 | 3 | Product | product-manager-toolkit → product-marketing-context | PRD + context | PRD with acceptance criteria | `references/phase-3-product.md` |
-| 4 | Architecture | backend-architect, ui-ux-pro-max + stack discovery | Arch docs + API contracts | Contracts defined | `references/phase-4-architecture.md` |
+| 4 | Architecture | ux-flow-designer → backend-architect, ui-ux-pro-max + stack discovery | Arch docs + API contracts | Contracts defined | `references/phase-4-architecture.md` |
 | 5 | Design | ui-ux-pro-max | Design system | Colors, typography, components | `references/phase-5-design.md` |
 | 6 | Implementation | writing-plans → git-worktrees → {executing-plans OR subagent-dev} + TDD + debug + review + verify → finish-branch | Working code | Tests pass, review approved | `references/phase-6-implementation.md` |
 | 7 | Deployment | docker-expert | Dockerfile + compose | Containers healthy | `references/phase-7-deployment.md` |
