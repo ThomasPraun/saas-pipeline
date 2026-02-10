@@ -12,6 +12,7 @@ Coordinate, never execute. Read project state, route to the correct skill, track
 - **Progressive disclosure** - load `references/phase-N-*.md` only when entering a phase
 - **No duplication** - delegate to skills, never reimplement their work
 - **Desync safety** - verify actual file existence, not just status.json claims
+- **Skill-aware delegation** - when dispatching any agent, apply `references/skill-injection-protocol.md` to identify relevant skills and instruct the agent to read them
 
 ---
 
@@ -75,6 +76,8 @@ IF in_progress → find next pending skill in phase, invoke it
 IF completed → advance current_phase, start next
 ```
 
+When delegating to any agent, apply `references/skill-injection-protocol.md`.
+
 ### Dashboard
 
 Display on status requests:
@@ -136,6 +139,9 @@ Always invoke these before their dependent work:
 ## Agent Teams
 
 Three parallelism opportunities via `dispatching-parallel-agents`. Always offer sequential as alternative.
+
+Before dispatching agents, apply `references/skill-injection-protocol.md` to identify relevant
+skills and instruct each agent to read them.
 
 ### 1. Phases 4+5: Architecture + Design
 

@@ -42,6 +42,9 @@ Choose one:
 - **`executing-plans`** — step by step with review checkpoints (solo work)
 - **`subagent-driven-development`** — parallel execution (independent tasks)
 
+When using `subagent-driven-development`, apply `references/skill-injection-protocol.md`
+to each implementer agent's prompt.
+
 During execution, apply continuously:
 - `test-driven-development` — before writing any implementation code
 - `systematic-debugging` — when tests fail or unexpected behavior occurs
@@ -63,7 +66,13 @@ Delegate to `finishing-a-development-branch`.
 
 ## Team Opportunity
 
-Frontend + Backend in parallel when API contracts exist:
+Frontend + Backend in parallel when API contracts exist.
+
+Apply `references/skill-injection-protocol.md` before dispatching each agent. The hub scans
+installed skills and instructs each agent to read those relevant to its domain (frontend
+tech skills → frontend agent, backend tech skills → backend agent, plus any methodology
+skills applicable during implementation).
+
 ```
 Agent A: Frontend → implement UI against contracts (mock responses)
 Agent B: Backend → implement API endpoints matching contracts
