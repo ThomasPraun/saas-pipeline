@@ -1,5 +1,7 @@
 # Skill Injection Protocol
 
+> **Quick version:** See the Skill Injection Rule in SKILL.md for the inline rule and example. This file provides the full algorithm for complex cases.
+
 When delegating tasks to any agent (Task tool subagent or Agent Team teammate),
 identify relevant skills and instruct the agent to read them.
 

@@ -42,8 +42,23 @@ Choose one:
 - **`executing-plans`** — step by step with review checkpoints (solo work)
 - **`subagent-driven-development`** — parallel execution (independent tasks)
 
-When using `subagent-driven-development`, apply `references/skill-injection-protocol.md`
-to each implementer agent's prompt.
+**MANDATORY pre-dispatch checklist (every agent, regardless of execution skill):**
+
+- [ ] Scanned `~/.claude/skills/` for skills matching the agent's task
+- [ ] Identified relevant skills (stack-specific + methodology like TDD)
+- [ ] Prepended `=== READ FIRST ===` block to the agent's prompt, BEFORE task content
+
+When using `subagent-driven-development`: its template has NO skill injection — you MUST prepend the block at the top:
+
+```
+=== READ FIRST ===
+Read: ~/.claude/skills/{stack-skill}/SKILL.md
+Read: ~/.claude/skills/test-driven-development/SKILL.md
+=== END READ ===
+
+You are implementing Task N: [task name]
+[... template continues ...]
+```
 
 During execution, apply continuously:
 - `test-driven-development` — before writing any implementation code
@@ -68,10 +83,10 @@ Delegate to `finishing-a-development-branch`.
 
 Frontend + Backend in parallel when API contracts exist.
 
-Apply `references/skill-injection-protocol.md` before dispatching each agent. The hub scans
-installed skills and instructs each agent to read those relevant to its domain (frontend
-tech skills → frontend agent, backend tech skills → backend agent, plus any methodology
-skills applicable during implementation).
+Apply the Skill Injection Rule (see SKILL.md) before dispatching each agent:
+- Frontend agent: frontend stack skill + TDD + methodology skills
+- Backend agent: backend stack skill + TDD + methodology skills
+Each agent's prompt MUST start with `=== READ FIRST ===` listing its domain-specific skills.
 
 ```
 Agent A: Frontend → implement UI against contracts (mock responses)

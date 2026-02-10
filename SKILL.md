@@ -12,7 +12,7 @@ Coordinate, never execute. Read project state, route to the correct skill, track
 - **Progressive disclosure** - load `references/phase-N-*.md` only when entering a phase
 - **No duplication** - delegate to skills, never reimplement their work
 - **Desync safety** - verify actual file existence, not just status.json claims
-- **Skill-aware delegation** - when dispatching any agent, apply `references/skill-injection-protocol.md` to identify relevant skills and instruct the agent to read them
+- **Skill-aware delegation** - MANDATORY: every subagent prompt must include a `=== READ FIRST ===` block with relevant skills (see [Skill Injection Rule](#skill-injection-rule))
 
 ---
 
@@ -76,7 +76,43 @@ IF in_progress → find next pending skill in phase, invoke it
 IF completed → advance current_phase, start next
 ```
 
-When delegating to any agent, apply `references/skill-injection-protocol.md`.
+### Skill Injection Rule
+
+**MANDATORY for every subagent dispatch.** Always run the scan — never skip it.
+
+Before dispatching any agent (Task tool or Agent Team):
+
+1. Scan `~/.claude/skills/` — match skill names/descriptions to the agent's task technology and type
+2. Select up to 4-5 relevant skills
+3. If relevant skills found, prepend a `=== READ FIRST ===` block to the agent's prompt. If no skills match, dispatch without the block — not every task needs skills
+
+```
+=== READ FIRST ===
+Read: ~/.claude/skills/{skill-a}/SKILL.md
+Read: ~/.claude/skills/{skill-b}/SKILL.md
+=== END READ ===
+```
+
+**Example — backend implementer dispatch:**
+
+```
+Task("Implement Task 3: Auth module
+
+=== READ FIRST ===
+Read: ~/.claude/skills/nodejs-backend-patterns/SKILL.md
+Read: ~/.claude/skills/test-driven-development/SKILL.md
+=== END READ ===
+
+=== TASK ===
+You are implementing Task 3: Auth module
+[... full task text, context, requirements ...]
+=== END TASK ===
+")
+```
+
+**When using `subagent-driven-development`:** its implementer-prompt.md does NOT include skill injection. You MUST prepend the `=== READ FIRST ===` block before the template content — the block goes at the very top, before "You are implementing Task N."
+
+For the full scanning algorithm, see `references/skill-injection-protocol.md`.
 
 ### Dashboard
 
@@ -140,8 +176,7 @@ Always invoke these before their dependent work:
 
 Three parallelism opportunities via `dispatching-parallel-agents`. Always offer sequential as alternative.
 
-Before dispatching agents, apply `references/skill-injection-protocol.md` to identify relevant
-skills and instruct each agent to read them.
+Before dispatching agents, apply the [Skill Injection Rule](#skill-injection-rule). Each agent gets skills matching its domain (frontend tech skills for frontend agent, backend tech skills for backend agent, plus methodology skills like TDD).
 
 ### 1. Phases 4+5: Architecture + Design
 
