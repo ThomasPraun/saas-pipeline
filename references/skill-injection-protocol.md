@@ -5,8 +5,9 @@
 When delegating tasks to any agent (Task tool subagent or Agent Team teammate),
 identify relevant skills and instruct the agent to read them.
 
-IMPORTANT: Always instruct agents to read the full SKILL.md file. Never summarize
-or paraphrase skill contents — this prevents information loss and interpretation bias.
+IMPORTANT: Always instruct agents to read the full SKILL.md file plus any matching
+reference files. Never summarize or paraphrase skill contents — this prevents
+information loss and interpretation bias.
 
 ## Protocol
 
@@ -40,21 +41,27 @@ From candidates, select the most relevant (max 4-5 per agent):
 - Exclude skills the agent will not realistically use for its specific subtask
 - If a skill is the SAME one the agent is executing, always include it
 
-### Step 4: Identify relevant skill files
+### Step 4: Identify relevant skill files (MANDATORY)
 
-Skills may contain more than just SKILL.md. Many include reference files
-(e.g., `references/`, examples, templates) that provide deeper guidance.
+Skills often contain reference files with detailed patterns, syntax, and
+implementation guidance that SKILL.md alone does not cover. Skipping references
+makes skills like flutter-expert, mql-developer, and others effectively useless —
+the real value is in their reference files.
 
 For each selected skill:
 ```
-LIST files in ~/.claude/skills/{skill}/
-IF the skill has reference files or subdirectories:
-  EVALUATE which ones are relevant to the agent's specific task
-  ADD relevant reference file paths to the reading list
+READ the skill's SKILL.md
+CHECK for a Reference Guide table or references/ directory
+IF references exist:
+  MATCH reference topics against the agent's task
+  ADD every matching reference file path to the reading list
 ```
 
-Always include the skill's SKILL.md (entry point). Add reference files only
-when they directly apply to the agent's task — not all references of every skill.
+Rules:
+- Always include the skill's SKILL.md (entry point)
+- Always check for and include matching references — do not skip this step
+- Include a reference when its topic overlaps with the agent's task (e.g., task involves Riverpod state → include riverpod-state.md)
+- Do not include references with no connection to the task (e.g., skip performance.md for a navigation-only task)
 
 ### Step 5: Instruct the agent to read the skills
 
@@ -79,4 +86,4 @@ Read: ~/.claude/skills/{skill-b}/SKILL.md
 - Run this protocol at delegation time, not at phase start (skills may be installed mid-phase)
 - For parallel agents (frontend + backend), each agent gets different skills matching their domain
 - Never summarize or paraphrase skill contents to agents — always instruct them to read the source files
-- Include reference files only when directly relevant to the task — don't dump entire skill directories
+- Always check skills for reference files and include those matching the task — but don't dump entire skill directories

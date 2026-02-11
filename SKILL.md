@@ -84,16 +84,42 @@ Before dispatching any agent (Task tool or Agent Team):
 
 1. Scan `~/.claude/skills/` — match skill names/descriptions to the agent's task technology and type
 2. Select up to 4-5 relevant skills
-3. If relevant skills found, prepend a `=== READ FIRST ===` block to the agent's prompt. If no skills match, dispatch without the block — not every task needs skills
+3. For each selected skill, read its SKILL.md and check for a Reference Guide table or `references/` directory. Include references whose topics match the agent's task
+4. Prepend a `=== READ FIRST ===` block listing each skill's SKILL.md AND its matching references. If no skills match, dispatch without the block — not every task needs skills
 
 ```
 === READ FIRST ===
 Read: ~/.claude/skills/{skill-a}/SKILL.md
+Read: ~/.claude/skills/{skill-a}/references/{matching-ref}.md
 Read: ~/.claude/skills/{skill-b}/SKILL.md
 === END READ ===
 ```
 
-**Example — backend implementer dispatch:**
+**Example — Flutter frontend implementer (skill with references):**
+
+The flutter-expert SKILL.md has a Reference Guide table. Task involves Riverpod state and navigation → include those references:
+
+```
+Task("Implement Task 2: User dashboard screen
+
+=== READ FIRST ===
+Read: ~/.claude/skills/flutter-expert/SKILL.md
+Read: ~/.claude/skills/flutter-expert/references/riverpod-state.md
+Read: ~/.claude/skills/flutter-expert/references/gorouter-navigation.md
+Read: ~/.claude/skills/flutter-expert/references/widget-patterns.md
+Read: ~/.claude/skills/test-driven-development/SKILL.md
+=== END READ ===
+
+=== TASK ===
+You are implementing Task 2: User dashboard screen
+[... full task text, context, requirements ...]
+=== END TASK ===
+")
+```
+
+**Example — backend implementer (skill without references):**
+
+nodejs-backend-patterns has no reference files, so only SKILL.md is needed:
 
 ```
 Task("Implement Task 3: Auth module

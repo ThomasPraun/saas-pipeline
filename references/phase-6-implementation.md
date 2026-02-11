@@ -48,11 +48,12 @@ Choose one:
 - [ ] Identified relevant skills (stack-specific + methodology like TDD)
 - [ ] Prepended `=== READ FIRST ===` block to the agent's prompt, BEFORE task content
 
-When using `subagent-driven-development`: its template has NO skill injection — you MUST prepend the block at the top:
+When using `subagent-driven-development`: its template has NO skill injection — you MUST prepend the block at the top. Include matching reference files from each skill (check their SKILL.md Reference Guide table):
 
 ```
 === READ FIRST ===
 Read: ~/.claude/skills/{stack-skill}/SKILL.md
+Read: ~/.claude/skills/{stack-skill}/references/{matching-ref}.md
 Read: ~/.claude/skills/test-driven-development/SKILL.md
 === END READ ===
 
@@ -84,9 +85,9 @@ Delegate to `finishing-a-development-branch`.
 Frontend + Backend in parallel when API contracts exist.
 
 Apply the Skill Injection Rule (see SKILL.md) before dispatching each agent:
-- Frontend agent: frontend stack skill + TDD + methodology skills
-- Backend agent: backend stack skill + TDD + methodology skills
-Each agent's prompt MUST start with `=== READ FIRST ===` listing its domain-specific skills.
+- Frontend agent: frontend stack skill (SKILL.md + matching references) + TDD + methodology skills
+- Backend agent: backend stack skill (SKILL.md + matching references) + TDD + methodology skills
+Each agent's prompt MUST start with `=== READ FIRST ===` listing its domain-specific skills and their relevant reference files.
 
 ```
 Agent A: Frontend → implement UI against contracts (mock responses)
